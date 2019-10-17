@@ -39,8 +39,9 @@
 * 5.serviceb重写本项目的HttpRequestHeaderHolder接口，将服务的每次请求头保存到线程的上下文中。
 
 ## 结果展示
+https://www.showdoc.cc/server/api/common/visitfile/sign/d8a3795a3023a1cb790a32238ea14175
 
-[![异步追踪](https://www.showdoc.cc/server/api/common/visitfile/sign/9b86029da29c41ded214c794f99b0c9b?showdoc=.jpg "异步追踪")](https://www.showdoc.cc/server/api/common/visitfile/sign/d8a3795a3023a1cb790a32238ea14175?showdoc=.jpg "异步追踪")
+[![异步追踪](https://www.showdoc.cc/server/api/common/visitfile/sign/9b86029da29c41ded214c794f99b0c9b?showdoc=.jpg)](https://www.showdoc.cc/server/api/common/visitfile/sign/d8a3795a3023a1cb790a32238ea14175)
 
 ## 服务配置说明
 
