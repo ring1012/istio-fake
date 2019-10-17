@@ -36,17 +36,22 @@
 
 * 4.serviceb依赖本项目，开启Fake注解@EnableFakeClients，项目会自动生成servicea-client接口的实现，并注入到spring容器中
 
-* 5.serviceb重写本项目的HttpRequestHeaderHolder接口，将服务的每次请求头保存到线程的上下文中。
+* 5.serviceb实现了本项目的HttpRequestHeaderHolder接口，将服务的每次请求头保存到线程的上下文中。
 
 ## 结果展示
 https://img.showdoc.cc/2019-10-17_5da85299c7c0b.png?e=1571315937&token=-YdeH6WvESHZKz-yUzWjO-uVV6A7oVrCN3UXi48F:F1sXxrQ0cCYGwZqQc_u2SQUC1WA=
 
 [![异步追踪](https://img.showdoc.cc/2019-10-17_5da85299c7c0b.png?e=1571315937&token=-YdeH6WvESHZKz-yUzWjO-uVV6A7oVrCN3UXi48F:F1sXxrQ0cCYGwZqQc_u2SQUC1WA=?showdoc=.jpg)](https://img.showdoc.cc/2019-10-17_5da85299c7c0b.png?e=1571315937&token=-YdeH6WvESHZKz-yUzWjO-uVV6A7oVrCN3UXi48F:F1sXxrQ0cCYGwZqQc_u2SQUC1WA=)
 
-## 服务配置说明
+## 配置说明
 
 * 1.默认情况下，FakeClient("servera"")会直接使用servera作为服务的host。适用于集群环境
 
 * 2.本地开发环境中，由于没有集群，直接调用http://servera/apixxx是不通的。本项目会优先解析spring的properties配置，如果寻找到以“fake.”打头的配置，那么会优先使用该配置地址。
   eg：fake.servera=localhost:8080 
+  
+
+* 3.向容器中注入List<String> tracingHeaderList Bean对象，可以定制想要透传的请求头；
+
+* 4.实现 HttpRequestHeaderHolder，根据需要选择不同功能的线程或线程池，获取每次请求的请求头；
 
