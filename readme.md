@@ -40,7 +40,7 @@
 
 ## 结果展示
 
-![异步链路追踪](https://www.showdoc.cc/server/api/common/visitfile/sign/d8a3795a3023a1cb790a32238ea14175?showdoc=.jpg "异步链路追踪")
+[![异步追踪](https://www.showdoc.cc/server/api/common/visitfile/sign/9b86029da29c41ded214c794f99b0c9b?showdoc=.jpg "异步追踪")](https://www.showdoc.cc/server/api/common/visitfile/sign/d8a3795a3023a1cb790a32238ea14175?showdoc=.jpg "异步追踪")
 
 ## 服务配置说明
 
