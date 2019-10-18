@@ -144,7 +144,7 @@ public class FakeClientsConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public List<String> tracingHeaderList() {
-        return Arrays.asList("x-request-id", "x-b3-traceid", "x-b3-spanid", "x-b3-sampled", "x-b3-flags", "x-b3-parentspanid",
+        return Arrays.asList("x-request-id", "x-b3-traceid", "x-b3-spanid", "x-b3-sampled", "x-b3-flags", 
                 "x-ot-span-context", "x-datadog-trace-id", "x-datadog-parent-id", "x-datadog-sampled", "end-user", "user-agent");
     }
 
