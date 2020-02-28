@@ -48,7 +48,6 @@ public class FakeClientFactoryBean
 
     private ApplicationContext applicationContext;
 
-    private Class<?> fallback = void.class;
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -281,14 +280,6 @@ public class FakeClientFactoryBean
         this.applicationContext = context;
     }
 
-    public Class<?> getFallback() {
-        return this.fallback;
-    }
-
-    public void setFallback(Class<?> fallback) {
-        this.fallback = fallback;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -300,7 +291,6 @@ public class FakeClientFactoryBean
         FakeClientFactoryBean that = (FakeClientFactoryBean) o;
         return Objects.equals(this.applicationContext, that.applicationContext)
                 && this.decode404 == that.decode404
-                && Objects.equals(this.fallback, that.fallback)
                 && Objects.equals(this.name, that.name)
                 && Objects.equals(this.type, that.type)
                 && Objects.equals(this.url, that.url);
@@ -308,7 +298,7 @@ public class FakeClientFactoryBean
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.applicationContext, this.decode404, this.fallback,
+        return Objects.hash(this.applicationContext, this.decode404,
                 this.name, this.type, this.url);
     }
 
@@ -319,8 +309,7 @@ public class FakeClientFactoryBean
                 .append("', ").append("url='").append(this.url).append("', ")
                 .append("path='").append("', ").append("decode404=")
                 .append(this.decode404).append(", ").append("applicationContext=")
-                .append(this.applicationContext).append(", ").append("fallback=")
-                .append(this.fallback).append(", ").append("fallbackFactory=")
+                .append(this.applicationContext).append(", ")
                 .append("}").toString();
     }
 

@@ -16,9 +16,17 @@ package istio.fake;
 import static java.lang.String.format;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
-import istio.fake.Util.Util;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.StringUtils;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+
+import istio.fake.util.Util;
 import istio.fake.base.Request;
 import istio.fake.base.Response;
 
@@ -27,18 +35,33 @@ import istio.fake.base.Response;
  * message. Note that {@code EncodeException} is not an {@code IOException}, nor does it have one
  * set as its cause.
  */
-public class FakeException extends RuntimeException {
+public class FakeException extends ResponseStatusException {
 
     private static final long serialVersionUID = 1L;
 
-    private int status;
+    private int statusCode;
     private byte[] content;
+    private String reason;
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+
+    public byte[] getContent() {
+        return content;
+    }
+
+    @Override
+    public String getReason() {
+        return this.reason;
+    }
 
     /**
      * @param message the reason for the failure.
      */
     public FakeException(String message) {
-        super(message);
+        super(HttpStatus.INTERNAL_SERVER_ERROR, message);
     }
 
     /**
@@ -46,30 +69,43 @@ public class FakeException extends RuntimeException {
      * @param cause   the cause of the error.
      */
     public FakeException(String message, Throwable cause) {
-        super(message, cause);
+        super(HttpStatus.INTERNAL_SERVER_ERROR, message, cause);
     }
 
 
-    public FakeException(int status, String message) {
-        super( message);
-        this.status = status;
+    public FakeException(int statusCode, String message) {
+        super(HttpStatus.valueOf(statusCode), message);
+        this.statusCode = statusCode;
     }
 
-    protected FakeException(int status, String message, byte[] content) {
-        super(message);
-        this.status = status;
+    protected FakeException(int statusCode, String message, byte[] content) {
+        super(HttpStatus.valueOf(statusCode));
+        String contentMsg = content2msg(content);
+        this.reason = StringUtils.hasText(contentMsg) ? contentMsg : message;
+        this.statusCode = statusCode;
         this.content = content;
     }
 
-    protected FakeException(int status, String message, Throwable cause, byte[] content) {
-        super(message, cause);
-        this.status = status;
+    private String content2msg(byte[] content) {
+        try {
+            JSONObject jsonObj = JSON.parseObject(new String(content, StandardCharsets.UTF_8));
+            return jsonObj.getString("msg");
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    protected FakeException(int statusCode, String message, Throwable cause, byte[] content) {
+        super(HttpStatus.valueOf(statusCode), message, cause);
+        String contentMsg = content2msg(content);
+        this.reason = StringUtils.hasText(contentMsg) ? contentMsg : message;
+        this.statusCode = statusCode;
         this.content = content;
     }
 
-    protected FakeException(int status, String message, Throwable cause) {
-        super(message, cause);
-        this.status = status;
+    protected FakeException(int statusCode, String message, Throwable cause) {
+        super(HttpStatus.valueOf(statusCode), message, cause);
+        this.statusCode = statusCode;
     }
 
     private static FakeException errorStatus(int status, String message, byte[] body) {
@@ -240,7 +276,7 @@ public class FakeException extends RuntimeException {
     @Override
     public String toString() {
         return "FakeException{" +
-                "status=" + status +
+                "status=" + statusCode +
                 ", content=" + Arrays.toString(content) +
                 '}';
     }

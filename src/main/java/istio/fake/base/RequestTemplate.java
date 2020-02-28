@@ -32,7 +32,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.base.template.HeaderTemplate;
 import istio.fake.base.template.QueryTemplate;
 import istio.fake.base.template.UriTemplate;

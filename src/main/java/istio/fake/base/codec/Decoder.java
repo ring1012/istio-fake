@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 
 import istio.fake.FakeException;
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.base.Response;
 
 /**

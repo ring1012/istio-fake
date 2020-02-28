@@ -2,16 +2,10 @@ package istio.fake.support;
 
 import java.util.Map;
 
-public abstract class HttpRequestHeaderHolder {
+import javax.servlet.ServletRequestListener;
+
+public abstract class HttpRequestHeaderHolder implements ServletRequestListener {
 
     public abstract Map<String, Object> getHeaderMap();
-
-    public static class DefaultHttpRequestHeaderHolder extends HttpRequestHeaderHolder{
-
-        @Override
-        public Map<String, Object> getHeaderMap() {
-            return null;
-        }
-    }
 
 }

@@ -13,14 +13,14 @@
  */
 package istio.fake.base;
 
-import static istio.fake.Util.Util.checkNotNull;
+import static istio.fake.util.Util.checkNotNull;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import istio.fake.FakeException;
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.base.codec.Decoder;
 import istio.fake.base.codec.ErrorDecoder;
 import istio.fake.base.log.FakeLogger;

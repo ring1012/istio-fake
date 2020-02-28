@@ -31,7 +31,7 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSocketFactory;
 
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 
 /**
  * Submits HTTP {@link Request requests}. Implementations are expected to be thread-safe.

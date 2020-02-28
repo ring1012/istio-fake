@@ -22,18 +22,19 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import istio.fake.base.Client;
 import istio.fake.base.Contract;
-import istio.fake.base.InvocationHandlerFactory;
-import istio.fake.base.SynchronousMethodHandler;
 import istio.fake.base.ExceptionPropagationPolicy;
+import istio.fake.base.InvocationHandlerFactory;
 import istio.fake.base.QueryMapEncoder;
 import istio.fake.base.ReflectiveFake;
 import istio.fake.base.Request;
 import istio.fake.base.RequestInterceptor;
 import istio.fake.base.Response;
 import istio.fake.base.ResponseMapper;
+import istio.fake.base.SynchronousMethodHandler;
 import istio.fake.base.codec.Decoder;
 import istio.fake.base.codec.Encoder;
 import istio.fake.base.codec.ErrorDecoder;
@@ -121,7 +122,12 @@ public abstract class Fake {
         private boolean decode404;
         private boolean closeAfterDecode = true;
         private ExceptionPropagationPolicy propagationPolicy = NONE;
-        private HttpRequestHeaderHolder httpRequestHeaderHolder = new HttpRequestHeaderHolder.DefaultHttpRequestHeaderHolder();
+        private HttpRequestHeaderHolder httpRequestHeaderHolder = new HttpRequestHeaderHolder() {
+            @Override
+            public Map<String, Object> getHeaderMap() {
+                return null;
+            }
+        };
 
         public Builder headerHolder(HttpRequestHeaderHolder httpRequestHeaderHolder) {
             this.httpRequestHeaderHolder = httpRequestHeaderHolder;

@@ -16,7 +16,7 @@ package istio.fake.base.template;
 import java.nio.charset.Charset;
 import java.util.Map;
 
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 
 /**
  * Template for @{@link fake.Body} annotated Templates. Unresolved expressions are preserved as

@@ -51,7 +51,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import istio.fake.annotation.QueryMapParameterProcessor;
 import istio.fake.annotation.RequestHeaderParameterProcessor;
 import istio.fake.annotation.RequestParamParameterProcessor;
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.annotation.PathVariableParameterProcessor;
 import istio.fake.base.Contract;
 import istio.fake.base.MethodMetadata;

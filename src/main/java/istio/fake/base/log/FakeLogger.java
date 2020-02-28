@@ -7,7 +7,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.LogRecord;
 import java.util.logging.SimpleFormatter;
 
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.base.Request;
 import istio.fake.base.Response;
 

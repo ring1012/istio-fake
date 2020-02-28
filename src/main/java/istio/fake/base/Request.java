@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.base.template.BodyTemplate;
 
 public final class Request {

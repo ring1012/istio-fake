@@ -23,7 +23,7 @@ import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.base.MethodMetadata;
 import istio.fake.openfake.AnnotatedParameterProcessor;
 

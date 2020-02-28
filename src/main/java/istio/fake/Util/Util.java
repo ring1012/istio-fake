@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package istio.fake.Util;
+package istio.fake.util;
 
 import static java.lang.String.format;
 import static java.util.Optional.ofNullable;

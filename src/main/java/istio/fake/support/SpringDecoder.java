@@ -30,7 +30,7 @@ import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.client.HttpMessageConverterExtractor;
 
 import istio.fake.FakeException;
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.base.Response;
 import istio.fake.base.codec.Decoder;
 

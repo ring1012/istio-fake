@@ -39,7 +39,7 @@ import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
 import org.springframework.web.multipart.MultipartFile;
 
 import istio.fake.FakeException;
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.base.Request;
 import istio.fake.base.RequestTemplate;
 import istio.fake.base.codec.Encoder;

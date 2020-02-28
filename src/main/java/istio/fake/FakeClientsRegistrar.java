@@ -15,7 +15,6 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
-import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.type.AnnotationMetadata;
@@ -40,16 +39,6 @@ public class FakeClientsRegistrar
     private Environment environment;
 
     FakeClientsRegistrar() {
-    }
-
-    static void validateFallback(final Class clazz) {
-        Assert.isTrue(!clazz.isInterface(),
-                "Fallback class must implement the interface annotated by @FeignClient");
-    }
-
-    static void validateFallbackFactory(final Class clazz) {
-        Assert.isTrue(!clazz.isInterface(), "Fallback factory must produce instances "
-                + "of fallback classes that implement the interface annotated by @FeignClient");
     }
 
     static String getName(String name) {
@@ -117,7 +106,8 @@ public class FakeClientsRegistrar
                                     FakeClient.class.getCanonicalName());
 
                     String name = getClientName(attributes);
-                    registerClientConfiguration(registry, name,
+
+                    registerClientConfiguration(registry, name + annotationMetadata.getClassName(),
                             attributes.get("configuration"));
 
                     registerFakeClient(registry, annotationMetadata, attributes);
@@ -131,15 +121,13 @@ public class FakeClientsRegistrar
         String className = annotationMetadata.getClassName();
         BeanDefinitionBuilder definition = BeanDefinitionBuilder
                 .genericBeanDefinition(FakeClientFactoryBean.class);
-        validate(attributes);
         String name = getName(attributes);
         definition.addPropertyValue("name", name);
         definition.addPropertyValue("type", className);
         definition.addPropertyValue("decode404", attributes.get("decode404"));
-        definition.addPropertyValue("fallback", attributes.get("fallback"));
         definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
 
-        String alias = name + "FakeClient";
+        String alias = name + annotationMetadata.getClassName() + "FakeClient";
         AbstractBeanDefinition beanDefinition = definition.getBeanDefinition();
 
         boolean primary = (Boolean) attributes.get("primary");
@@ -156,10 +144,6 @@ public class FakeClientsRegistrar
         BeanDefinitionReaderUtils.registerBeanDefinition(holder, registry);
     }
 
-    private void validate(Map<String, Object> attributes) {
-        AnnotationAttributes annotation = AnnotationAttributes.fromMap(attributes);
-        validateFallback(annotation.getClass("fallback"));
-    }
 
     /* for testing */ String getName(Map<String, Object> attributes) {
         String name = (String) attributes.get("name");

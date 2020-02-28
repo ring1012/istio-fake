@@ -16,8 +16,8 @@
 
 package istio.fake.annotation;
 
-import static istio.fake.Util.Util.checkState;
-import static istio.fake.Util.Util.emptyToNull;
+import static istio.fake.util.Util.checkState;
+import static istio.fake.util.Util.emptyToNull;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;

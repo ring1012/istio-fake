@@ -37,22 +37,23 @@ import com.fasterxml.jackson.databind.Module;
 
 import istio.fake.base.Client;
 import istio.fake.base.Contract;
-import istio.fake.openfake.Fake;
-import istio.fake.openfake.FakeFormatterRegistrar;
-import istio.fake.support.PageJacksonModule;
-import istio.fake.support.PageableSpringEncoder;
-import istio.fake.support.SpringMvcContract;
 import istio.fake.base.codec.Decoder;
 import istio.fake.base.codec.Encoder;
 import istio.fake.base.log.DefaultFakeLoggerFactory;
 import istio.fake.base.log.FakeLogger;
 import istio.fake.base.log.FakeLoggerFactory;
 import istio.fake.openfake.AnnotatedParameterProcessor;
+import istio.fake.openfake.Fake;
+import istio.fake.openfake.FakeFormatterRegistrar;
 import istio.fake.openfake.OptionalDecoder;
 import istio.fake.support.HttpRequestHeaderHolder;
+import istio.fake.support.HttpRequestHeaderHolderImpl;
+import istio.fake.support.PageJacksonModule;
+import istio.fake.support.PageableSpringEncoder;
 import istio.fake.support.ResponseEntityDecoder;
 import istio.fake.support.SpringDecoder;
 import istio.fake.support.SpringEncoder;
+import istio.fake.support.SpringMvcContract;
 
 /**
  * @author Dave Syer
@@ -138,13 +139,13 @@ public class FakeClientsConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public HttpRequestHeaderHolder httpRequestHeaderHolder() {
-        return new HttpRequestHeaderHolder.DefaultHttpRequestHeaderHolder();
+        return new HttpRequestHeaderHolderImpl(tracingHeaderList());
     }
 
     @Bean
     @ConditionalOnMissingBean
     public List<String> tracingHeaderList() {
-        return Arrays.asList("x-request-id", "x-b3-traceid", "x-b3-spanid", "x-b3-sampled", "x-b3-flags", 
+        return Arrays.asList("x-request-id", "x-b3-traceid", "x-b3-spanid", "x-b3-sampled", "x-b3-flags", "Authorization",
                 "x-ot-span-context", "x-datadog-trace-id", "x-datadog-parent-id", "x-datadog-sampled", "end-user", "user-agent");
     }
 

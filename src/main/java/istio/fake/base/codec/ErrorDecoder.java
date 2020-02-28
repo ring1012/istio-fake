@@ -24,7 +24,7 @@ import java.util.Date;
 import java.util.Map;
 
 import istio.fake.FakeException;
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.base.Response;
 
 /**

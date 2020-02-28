@@ -13,7 +13,7 @@
  */
 package istio.fake.openfake;
 
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.base.Request;
 import istio.fake.base.RequestTemplate;
 

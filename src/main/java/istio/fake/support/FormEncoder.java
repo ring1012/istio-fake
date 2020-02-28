@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import istio.fake.FakeException;
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.base.RequestTemplate;
 import istio.fake.base.codec.Encoder;
 import lombok.experimental.FieldDefaults;

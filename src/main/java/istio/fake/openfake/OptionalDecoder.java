@@ -19,7 +19,7 @@ import java.lang.reflect.Type;
 import java.util.Objects;
 import java.util.Optional;
 
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.base.Response;
 import istio.fake.base.codec.Decoder;
 

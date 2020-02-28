@@ -20,7 +20,7 @@ import java.nio.charset.Charset;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 
 public class UriUtils {
 

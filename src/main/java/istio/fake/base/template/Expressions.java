@@ -22,7 +22,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 
 public final class Expressions {
   private static Map<Pattern, Class<? extends Expression>> expressions;

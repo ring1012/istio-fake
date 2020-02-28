@@ -25,12 +25,6 @@ public @interface FakeClient {
     String name() default "";
 
     /**
-     * Fallback class for the specified Feign client interface. The fallback class must
-     * implement the interface annotated by this annotation and be a valid spring bean.
-     */
-    Class<?> fallback() default void.class;
-
-    /**
      * A custom <code>@Configuration</code> for the feign client. Can contain override
      * <code>@Bean</code> definition for the pieces that make up the client, for instance
      * {@link feign.codec.Decoder}, {@link feign.codec.Encoder}, {@link feign.Contract}.

@@ -24,7 +24,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.base.CollectionFormat;
 
 /**

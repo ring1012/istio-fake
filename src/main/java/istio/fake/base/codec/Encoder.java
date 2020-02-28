@@ -18,7 +18,7 @@ import static java.lang.String.format;
 import java.lang.reflect.Type;
 
 import istio.fake.FakeException;
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.base.RequestTemplate;
 
 /**

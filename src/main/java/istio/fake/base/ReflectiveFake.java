@@ -13,7 +13,7 @@
  */
 package istio.fake.base;
 
-import static istio.fake.Util.Util.checkNotNull;
+import static istio.fake.util.Util.checkNotNull;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import istio.fake.FakeException;
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 import istio.fake.base.codec.Decoder;
 import istio.fake.openfake.Fake;
 import istio.fake.support.HttpRequestHeaderHolder;

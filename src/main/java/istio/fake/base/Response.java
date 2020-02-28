@@ -28,7 +28,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
-import istio.fake.Util.Util;
+import istio.fake.util.Util;
 
 /**
  * An immutable response to an http invocation which only returns string content.
