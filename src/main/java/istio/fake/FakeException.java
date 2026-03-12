@@ -13,22 +13,20 @@
  */
 package istio.fake;
 
-import static java.lang.String.format;
-
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import istio.fake.base.Request;
+import istio.fake.base.Response;
+import istio.fake.util.Util;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import java.io.IOException;
+import java.util.Arrays;
 
-import istio.fake.util.Util;
-import istio.fake.base.Request;
-import istio.fake.base.Response;
+import static java.lang.String.format;
 
 /**
  * Similar to {@code javax.websocket.EncodeException}, raised when a problem occurs encoding a
@@ -38,19 +36,20 @@ import istio.fake.base.Response;
 public class FakeException extends ResponseStatusException {
 
     private static final long serialVersionUID = 1L;
-
+    private static final ObjectMapper mapper = new ObjectMapper();
     private int statusCode;
+    @Getter
     private byte[] content;
     private String reason;
 
-    public int getStatusCode() {
+    /**
+     * 获取状态码
+     * @return
+     */
+    public int getStatus() {
         return statusCode;
     }
 
-
-    public byte[] getContent() {
-        return content;
-    }
 
     @Override
     public String getReason() {
@@ -88,9 +87,9 @@ public class FakeException extends ResponseStatusException {
 
     private String content2msg(byte[] content) {
         try {
-            JSONObject jsonObj = JSON.parseObject(new String(content, StandardCharsets.UTF_8));
-            return jsonObj.getString("msg");
-        } catch (Exception e) {
+            JsonNode node = mapper.readTree(content);
+            return node.has("msg") ? node.get("msg").asText() : null;
+        } catch (Exception ignored) {
             return null;
         }
     }

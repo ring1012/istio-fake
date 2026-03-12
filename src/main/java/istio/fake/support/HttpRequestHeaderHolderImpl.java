@@ -1,13 +1,12 @@
 package istio.fake.support;
 
+import jakarta.servlet.ServletRequestEvent;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.util.CollectionUtils;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.ServletRequestEvent;
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.util.CollectionUtils;
 
 /**
  * @author tanghuan@focusmedia.cn
